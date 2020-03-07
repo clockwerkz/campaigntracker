@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "A full stack MERN project to track a Campaign through the Dungeons and Dragons boardgames.",
   "main": "index.js",
-  "engines":{
-    "node":"12.14.1",
-    "npm":"6.13.4"
+  "engines": {
+    "node": "12.14.1",
+    "npm": "6.13.4"
   },
   "scripts": {
     "start": "node index.js"
