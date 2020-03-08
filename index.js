@@ -8,17 +8,25 @@ const PORT = process.env.PORT || 5000;
 
 
 passport.use(new GoogleStrategy({
-    clientID: keys.clientID,
-    clientSecret: keys.clientSecret,
-    callbackURL: "http://www.example.com/auth/google/callback"
+    clientID: keys.googleClientID,
+    clientSecret: keys.googleClientSecret,
+    callbackURL: "/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
+    console.log(accessToken);
+    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    //   return cb(err, user);
+    // });
   }
 ));
 
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email']}) ,(req, res)=> {
+
+});
+
+app.get('/auth/google/callback', (req, res)=> {
+  
+});
 
 app.listen(PORT, ()=> {
     console.log(`App listening on PORT ${PORT}`);
