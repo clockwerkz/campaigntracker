@@ -12,11 +12,11 @@ passport.use(new GoogleStrategy({
     clientSecret: keys.googleClientSecret,
     callbackURL: "/auth/google/callback"
   },
-  function(accessToken, refreshToken, profile, cb) {
-    console.log(accessToken);
-    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-    //   return cb(err, user);
-    // });
+  (accessToken, refreshToken, profile, done) => {
+    console.log('accessToken:',accessToken);
+    console.log('refreshToken',refreshToken);
+    console.log('profile:',profile);
+    done();
   }
 ));
 
@@ -24,9 +24,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 
 });
 
-app.get('/auth/google/callback', (req, res)=> {
-  
-});
+app.get('/auth/google/callback', passport.authenticate('google'));
 
 app.listen(PORT, ()=> {
     console.log(`App listening on PORT ${PORT}`);
