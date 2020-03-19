@@ -15,14 +15,14 @@ passport.deserializeUser(async (id,done) => {
 });
 
 
-const callbackURL = process.env.NODE_ENV === 'production' ? 'https://pacific-basin-44606.herokuapp.com/auth/google/callback' : '/auth/google/callback';
 
 
 
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
-    callbackURL: callbackURL
+    callbackURL: '/auth/google/callback',
+    proxy: true
   },
   async (accessToken, refreshToken, profile, done) => {
     try {
