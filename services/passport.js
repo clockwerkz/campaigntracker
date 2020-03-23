@@ -28,11 +28,8 @@ passport.use(new GoogleStrategy({
     try {
       let user = await User.findOne({ googleID : profile.id });
       if (!user) {
-        console.log("user does not exist");
         user = await User({ googleID : profile.id }).save();
-      } else {
-        console.log("User already existed");
-      }
+      } 
       done(null, user);
     } catch (err) {
       console.log("Error accessing user info", err);
