@@ -31,7 +31,7 @@ mongoose.connect(keys.mongoURI, {
 
 
 
-app.use('/auth', authRoutes);
+app.use('/', authRoutes);
 
 app.listen(PORT, ()=> {
     console.log(`App listening on PORT ${PORT}`);
